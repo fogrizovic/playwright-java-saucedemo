@@ -1,1 +1,1 @@
-[]
+[{"uid":"38bd61cf46abd02c","name":"should display error when invalid credentials","time":{"start":1774706573548,"stop":1774706573712,"duration":164},"status":"passed","severity":"normal"},{"uid":"380244dce91c88b8","name":"should display error when invalid credentials","time":{"start":1774706574483,"stop":1774706574628,"duration":145},"status":"passed","severity":"normal"}]
