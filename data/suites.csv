@@ -1,3 +1,3 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Sat Mar 28 14:02:53 UTC 2026","Sat Mar 28 14:02:53 UTC 2026","164","All tests","AllTests","com.saucedemo.tests.LoginTest","com.saucedemo.tests.LoginTest","shouldDisplayErrorMessage","should display error when invalid credentials",""
-"passed","Sat Mar 28 14:02:54 UTC 2026","Sat Mar 28 14:02:54 UTC 2026","145","All tests","AllTests","com.saucedemo.tests.LoginTest","com.saucedemo.tests.LoginTest","shouldDisplayErrorMessage","should display error when invalid credentials",""
+"passed","Sat Mar 28 14:06:02 UTC 2026","Sat Mar 28 14:06:02 UTC 2026","118","All tests","AllTests","com.saucedemo.tests.LoginTest","com.saucedemo.tests.LoginTest","shouldDisplayErrorMessage","should display error when invalid credentials",""
+"passed","Sat Mar 28 14:06:01 UTC 2026","Sat Mar 28 14:06:01 UTC 2026","153","All tests","AllTests","com.saucedemo.tests.LoginTest","com.saucedemo.tests.LoginTest","shouldDisplayErrorMessage","should display error when invalid credentials",""
