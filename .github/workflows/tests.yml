@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -25,3 +28,33 @@ jobs:
 
       - name: Run tests
         run: mvn test -Dheadless=true
+        continue-on-error: true
+
+      - name: Install Allure CLI
+        if: always()
+        run: |
+          wget -qO allure.tgz https://github.com/allure-framework/allure2/releases/download/2.29.0/allure-2.29.0.tgz
+          tar -zxf allure.tgz
+          sudo mv allure-2.29.0 /opt/allure
+          echo "/opt/allure/bin" >> $GITHUB_PATH
+
+      - name: Get Allure history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Generate Allure report
+        if: always()
+        run: |
+          [ -d gh-pages/history ] && cp -r gh-pages/history target/allure-results/history || true
+          allure generate target/allure-results --clean -o allure-report
+
+      - name: Deploy report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: allure-report
