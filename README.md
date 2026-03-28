@@ -33,4 +33,5 @@ Edit `src/main/resources/config.properties`:
 
 ```properties
 browser=chromium   # chromium | firefox | safari | chrome
+baseUrl=https://www.saucedemo.com
 ```

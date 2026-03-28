@@ -10,7 +10,7 @@ public class BaseTest {
     @BeforeMethod
     public void initBrowser() {
         PlaywrightFactory.initBrowser(PropertyReader.getProperty("browser"));
-        PlaywrightFactory.getPage().navigate("https://www.saucedemo.com/");
+        PlaywrightFactory.getPage().navigate(PropertyReader.getProperty("baseUrl"));
     }
 
     @AfterMethod
