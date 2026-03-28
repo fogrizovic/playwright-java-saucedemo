@@ -2,6 +2,7 @@ package com.saucedemo.factory;
 
 import com.microsoft.playwright.*;
 
+import java.nio.file.Paths;
 import java.util.Locale;
 
 public class PlaywrightFactory {
@@ -51,7 +52,9 @@ public class PlaywrightFactory {
                 throw new IllegalArgumentException("Unsupported browser: " + browserName);
         }
 
-        browserContextThreadLocal.set(getBrowser().newContext());
+        Browser.NewContextOptions contextOptions = new Browser.NewContextOptions()
+                .setRecordVideoDir(Paths.get("target/videos/"));
+        browserContextThreadLocal.set(getBrowser().newContext(contextOptions));
         pageThreadLocal.set(getBrowserContext().newPage());
 
         return getPage();

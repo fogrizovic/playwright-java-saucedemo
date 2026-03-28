@@ -7,7 +7,9 @@ UI test automation for [saucedemo.com](https://www.saucedemo.com) using Playwrig
 - Java 21
 - [Playwright for Java](https://playwright.dev/java/) 1.52
 - TestNG 7.11
+- Allure 2.29
 - Maven
+- GitHub Actions (CI + report published to GitHub Pages)
 
 ## Setup
 
