@@ -31,20 +31,21 @@ public class PlaywrightFactory {
 
         playwrightThreadLocal.set(Playwright.create());
 
+        boolean headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
         System.out.println("browser name is: " + browserName);
 
         switch (browserName.toLowerCase(Locale.ROOT)) {
             case "chromium":
-                browserThreadLocal.set(getPlaywright().chromium().launch(new BrowserType.LaunchOptions().setHeadless(false)));
+                browserThreadLocal.set(getPlaywright().chromium().launch(new BrowserType.LaunchOptions().setHeadless(headless)));
                 break;
             case "firefox":
-                browserThreadLocal.set(getPlaywright().firefox().launch(new BrowserType.LaunchOptions().setHeadless(false)));
+                browserThreadLocal.set(getPlaywright().firefox().launch(new BrowserType.LaunchOptions().setHeadless(headless)));
                 break;
             case "safari":
-                browserThreadLocal.set(getPlaywright().webkit().launch(new BrowserType.LaunchOptions().setHeadless(false)));
+                browserThreadLocal.set(getPlaywright().webkit().launch(new BrowserType.LaunchOptions().setHeadless(headless)));
                 break;
             case "chrome":
-                browserThreadLocal.set(getPlaywright().chromium().launch(new BrowserType.LaunchOptions().setChannel("chrome").setHeadless(false)));
+                browserThreadLocal.set(getPlaywright().chromium().launch(new BrowserType.LaunchOptions().setChannel("chrome").setHeadless(headless)));
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported browser: " + browserName);
