@@ -11,29 +11,29 @@ public class PlaywrightFactory {
     private static ThreadLocal<Page> pageThreadLocal = new ThreadLocal<>();
     private static ThreadLocal<Playwright> playwrightThreadLocal = new ThreadLocal<>();
 
-    public static Playwright getPlaywright(){
+    public static Playwright getPlaywright() {
         return playwrightThreadLocal.get();
     }
 
-    public static Browser getBrowser(){
+    public static Browser getBrowser() {
         return browserThreadLocal.get();
     }
 
-    public static BrowserContext getBrowserContext(){
+    public static BrowserContext getBrowserContext() {
         return browserContextThreadLocal.get();
     }
 
-    public static Page getPage(){
+    public static Page getPage() {
         return pageThreadLocal.get();
     }
 
-    public Page initBrowser(String browserName) {
+    public static Page initBrowser(String browserName) {
 
         playwrightThreadLocal.set(Playwright.create());
 
         System.out.println("browser name is: " + browserName);
 
-        switch (browserName.toLowerCase(Locale.ROOT)){
+        switch (browserName.toLowerCase(Locale.ROOT)) {
             case "chromium":
                 browserThreadLocal.set(getPlaywright().chromium().launch(new BrowserType.LaunchOptions().setHeadless(false)));
                 break;
@@ -47,14 +47,12 @@ public class PlaywrightFactory {
                 browserThreadLocal.set(getPlaywright().chromium().launch(new BrowserType.LaunchOptions().setChannel("chrome").setHeadless(false)));
                 break;
             default:
-                System.out.println("wrong browser");
+                throw new IllegalArgumentException("Unsupported browser: " + browserName);
         }
 
         browserContextThreadLocal.set(getBrowser().newContext());
         pageThreadLocal.set(getBrowserContext().newPage());
-        getPage().navigate("https://www.saucedemo.com/");
 
         return getPage();
-
     }
 }

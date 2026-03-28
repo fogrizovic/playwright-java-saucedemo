@@ -1,30 +1,27 @@
 package com.saucedemo.utils;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
 public class PropertyReader {
+
+    private static final Properties PROPERTIES = loadProperties();
+
     private PropertyReader() {
     }
 
-    public static String getProperty(String propertyName) {
-
+    private static Properties loadProperties() {
         Properties prop = new Properties();
-
-        FileInputStream fis = null;
-        try {
-            fis = new FileInputStream("src/main/resources/config.properties");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
+        try (FileInputStream fis = new FileInputStream("src/main/resources/config.properties")) {
             prop.load(fis);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to load config.properties", e);
         }
+        return prop;
+    }
 
-        return prop.getProperty(propertyName);
+    public static String getProperty(String propertyName) {
+        return PROPERTIES.getProperty(propertyName);
     }
 }

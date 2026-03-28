@@ -16,15 +16,12 @@ public class LoginPage {
     }
 
     public void doLogin(String user, String pass) {
-        page.fill(usernameInput, user);
-        page.fill(passwordInput, pass);
-        page.click(loginButton);
+        page.locator(usernameInput).fill(user);
+        page.locator(passwordInput).fill(pass);
+        page.locator(loginButton).click();
     }
 
-    public String getErrorMessage(){
-        return page.textContent(errorMessage);
+    public String getErrorMessage() {
+        return page.locator(errorMessage).textContent();
     }
-
-
-
 }
